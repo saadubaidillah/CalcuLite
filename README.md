@@ -215,12 +215,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Icons by [Lucide](https://lucide.dev/)
 - Color palette inspired by nature's green tones
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/calories-calculator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/calories-calculator/discussions)
-- **Email**: your.email@example.com
-
 ## 🗺️ Roadmap
 
 - [ ] Mobile app version (React Native)
