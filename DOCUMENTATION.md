@@ -1,0 +1,525 @@
+# 📚 Calories Calculator - Technical Documentation
+
+## Table of Contents
+1. [Architecture Overview](#architecture-overview)
+2. [Component Documentation](#component-documentation)
+3. [API Reference](#api-reference)
+4. [Internationalization](#internationalization)
+5. [Theming System](#theming-system)
+6. [Calculation Engine](#calculation-engine)
+7. [Testing Guide](#testing-guide)
+8. [Deployment](#deployment)
+
+## Architecture Overview
+
+The Calories Calculator follows a modern React architecture with TypeScript for type safety and Tailwind CSS for styling.
+
+### Core Principles
+- **Component-based**: Modular, reusable React components
+- **Type Safety**: Full TypeScript coverage
+- **Responsive Design**: Mobile-first approach
+- **Accessibility**: ARIA labels and keyboard navigation
+- **Performance**: Optimized renders and lazy loading
+
+### Technology Stack
+```
+Frontend:
+├── React 18.x          # UI Framework
+├── TypeScript 5.x      # Type Safety
+├── Tailwind CSS 3.x    # Styling
+├── Vite               # Build Tool
+└── Lucide React       # Icons
+
+Development:
+├── ESLint             # Code Linting
+├── PostCSS            # CSS Processing
+└── Git                # Version Control
+```
+
+## Component Documentation
+
+### Core Components
+
+#### `CalculatorForm.tsx`
+**Purpose**: Main form for user input (age, weight, height, etc.)
+
+**Props**:
+```typescript
+interface CalculatorFormProps {
+  onCalculate: (data: UserData) => void;
+  language: Language;
+}
+```
+
+**State Management**:
+```typescript
+const [formData, setFormData] = useState<UserData>({
+  age: '',
+  gender: 'male',
+  height: '',
+  weight: '',
+  activityLevel: 'moderate',
+  goal: 'build'
+});
+```
+
+**Validation Rules**:
+- Age: 15-100 years
+- Height: 120-250 cm
+- Weight: 30-300 kg
+
+#### `ResultsDisplay.tsx`
+**Purpose**: Shows calculated results with export options
+
+**Props**:
+```typescript
+interface ResultsDisplayProps {
+  results: MacroResults;
+  language: Language;
+  onDownloadPDF: () => void;
+  onPrint: () => void;
+}
+```
+
+**Features**:
+- BMR/TDEE/Goal calories display
+- Macro breakdown visualization
+- PDF export functionality
+- Print-friendly layout
+
+#### `MacroChart.tsx`
+**Purpose**: Visual chart showing macro distribution
+
+**Props**:
+```typescript
+interface MacroChartProps {
+  results: MacroResults;
+  language: Language;
+}
+```
+
+**Chart Configuration**:
+- Responsive canvas sizing
+- Color-coded macro segments
+- Animated transitions
+- Touch/mouse interactions
+
+#### `WorkoutPlan.tsx`
+**Purpose**: Displays 4-day workout split
+
+**Props**:
+```typescript
+interface WorkoutPlanProps {
+  language: Language;
+}
+```
+
+**Workout Structure**:
+```typescript
+interface WorkoutDay {
+  name: string;
+  exercises: Exercise[];
+}
+
+interface Exercise {
+  name: string;
+  sets: number;
+  reps: string;
+  instructions: string;
+}
+```
+
+### Utility Components
+
+#### `Header.tsx`
+- Logo and title display
+- Language toggle button
+- Theme toggle button
+- Responsive navigation
+
+#### `MealPlans.tsx`
+- Sample meal suggestions
+- Macro-aligned recommendations
+- Dietary preference options
+
+## API Reference
+
+### Calculation Functions
+
+#### `calculateMacros(userData: UserData): MacroResults`
+**Description**: Main calculation function for BMR, TDEE, and macros
+
+**Parameters**:
+```typescript
+interface UserData {
+  age: string;
+  gender: 'male' | 'female';
+  height: string;
+  weight: string;
+  activityLevel: 'sedentary' | 'moderate' | 'active';
+  goal: 'build' | 'lose';
+}
+```
+
+**Returns**:
+```typescript
+interface MacroResults {
+  bmr: number;
+  tdee: number;
+  goalTdee: number;
+  protein: MacroNutrient;
+  carbs: MacroNutrient;
+  fat: MacroNutrient;
+}
+
+interface MacroNutrient {
+  grams: number;
+  calories: number;
+  percentage: number;
+}
+```
+
+#### `calculateBMR(age: number, gender: string, height: number, weight: number): number`
+**Description**: Calculates Basal Metabolic Rate using Mifflin-St Jeor equation
+
+**Formula**:
+```
+Men: BMR = 10 × weight + 6.25 × height - 5 × age + 5
+Women: BMR = 10 × weight + 6.25 × height - 5 × age - 161
+```
+
+#### `calculateTDEE(bmr: number, activityLevel: string): number`
+**Description**: Calculates Total Daily Energy Expenditure
+
+**Activity Multipliers**:
+- Sedentary: 1.2
+- Moderate: 1.55
+- Active: 1.9
+
+### PDF Export Functions
+
+#### `generatePDF(results: MacroResults, language: Language): void`
+**Description**: Generates and downloads PDF report
+
+**Features**:
+- Multi-page layout
+- Charts and graphs
+- Bilingual support
+- Custom branding
+
+## Internationalization
+
+### Translation System
+
+The app uses a centralized translation system in `src/data/translations.ts`:
+
+```typescript
+export const translations = {
+  en: {
+    title: "Calories Calculator & Workout Planner",
+    // ... English translations
+  },
+  ar: {
+    title: "حاسبة السعرات ومخطط التمارين",
+    // ... Arabic translations
+  }
+};
+```
+
+### RTL Support
+
+Arabic language includes full RTL (Right-to-Left) support:
+
+```css
+/* Automatic RTL classes */
+.rtl\:space-x-reverse > * + * {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+.rtl\:text-right {
+  text-align: right;
+}
+```
+
+### Adding New Languages
+
+1. Add translations to `translations.ts`
+2. Update `Language` type in `types/index.ts`
+3. Add language option to header component
+4. Test RTL layout if applicable
+
+## Theming System
+
+### Color Scheme
+
+The app uses a green-based color palette:
+
+```javascript
+// tailwind.config.js
+colors: {
+  primary: {
+    50: '#f0fdf4',   // Lightest green
+    500: '#22c55e',  // Main green
+    900: '#14532d',  // Darkest green
+  },
+  accent: {
+    50: '#ecfdf5',   // Lightest emerald
+    500: '#10b981',  // Main emerald
+    900: '#064e3b',  // Darkest emerald
+  }
+}
+```
+
+### Dark Mode Implementation
+
+Uses Tailwind's dark mode with class strategy:
+
+```typescript
+// Theme hook
+const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+// Toggle function
+const toggleTheme = () => {
+  setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dark');
+};
+```
+
+### Custom CSS Variables
+
+```css
+:root {
+  --primary-color: #22c55e;
+  --accent-color: #10b981;
+  --background-gradient: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #ecfdf5 100%);
+}
+
+[data-theme="dark"] {
+  --background-gradient: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0f172a 100%);
+}
+```
+
+## Calculation Engine
+
+### BMR Formulas
+
+The app supports multiple BMR calculation methods:
+
+#### Mifflin-St Jeor Equation (Default)
+```typescript
+const calculateBMR = (weight: number, height: number, age: number, gender: string): number => {
+  const base = 10 * weight + 6.25 * height - 5 * age;
+  return gender === 'male' ? base + 5 : base - 161;
+};
+```
+
+#### Harris-Benedict Equation (Alternative)
+```typescript
+const calculateBMRHarris = (weight: number, height: number, age: number, gender: string): number => {
+  if (gender === 'male') {
+    return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+  } else {
+    return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+  }
+};
+```
+
+### Macro Distribution Logic
+
+```typescript
+const getMacroDistribution = (goal: string) => {
+  switch (goal) {
+    case 'build':
+      return { protein: 0.30, carbs: 0.40, fat: 0.30 };
+    case 'lose':
+      return { protein: 0.35, carbs: 0.30, fat: 0.35 };
+    default:
+      return { protein: 0.30, carbs: 0.40, fat: 0.30 };
+  }
+};
+```
+
+### Calorie Adjustment
+
+```typescript
+const getGoalCalories = (tdee: number, goal: string): number => {
+  switch (goal) {
+    case 'build':
+      return Math.round(tdee * 1.1); // +10% for muscle gain
+    case 'lose':
+      return Math.round(tdee * 0.85); // -15% for fat loss
+    default:
+      return tdee;
+  }
+};
+```
+
+## Testing Guide
+
+### Unit Testing Setup
+
+```bash
+# Install testing dependencies
+npm install --save-dev @testing-library/react @testing-library/jest-dom vitest
+```
+
+### Component Testing
+
+```typescript
+// Example test for CalculatorForm
+import { render, screen, fireEvent } from '@testing-library/react';
+import { CalculatorForm } from '../components/CalculatorForm';
+
+test('should calculate BMR correctly', () => {
+  const mockOnCalculate = jest.fn();
+  
+  render(<CalculatorForm onCalculate={mockOnCalculate} language="en" />);
+  
+  // Fill form inputs
+  fireEvent.change(screen.getByLabelText('Age'), { target: { value: '25' } });
+  fireEvent.change(screen.getByLabelText('Weight'), { target: { value: '70' } });
+  fireEvent.change(screen.getByLabelText('Height'), { target: { value: '175' } });
+  
+  // Submit form
+  fireEvent.click(screen.getByText('Calculate My Plan'));
+  
+  expect(mockOnCalculate).toHaveBeenCalledWith(
+    expect.objectContaining({
+      age: '25',
+      weight: '70',
+      height: '175'
+    })
+  );
+});
+```
+
+### Calculation Testing
+
+```typescript
+// Test calculation accuracy
+import { calculateBMR, calculateTDEE } from '../utils/calculations';
+
+test('BMR calculation for male', () => {
+  const bmr = calculateBMR(25, 'male', 175, 70);
+  expect(bmr).toBeCloseTo(1673, 0);
+});
+
+test('TDEE calculation for moderate activity', () => {
+  const tdee = calculateTDEE(1673, 'moderate');
+  expect(tdee).toBeCloseTo(2593, 0);
+});
+```
+
+### E2E Testing
+
+```typescript
+// Cypress example
+describe('Calories Calculator', () => {
+  it('should complete full calculation flow', () => {
+    cy.visit('/');
+    
+    // Fill form
+    cy.get('[data-testid="age-input"]').type('25');
+    cy.get('[data-testid="weight-input"]').type('70');
+    cy.get('[data-testid="height-input"]').type('175');
+    
+    // Submit and verify results
+    cy.get('[data-testid="calculate-button"]').click();
+    cy.get('[data-testid="bmr-result"]').should('contain', '1,673');
+  });
+});
+```
+
+## Deployment
+
+### Build Process
+
+```bash
+# Production build
+npm run build
+
+# Preview build locally
+npm run preview
+```
+
+### Environment Configuration
+
+Create environment-specific files:
+
+```bash
+# .env.production
+VITE_APP_ENV=production
+VITE_API_URL=https://api.yourapp.com
+VITE_ANALYTICS_ID=your-analytics-id
+```
+
+### Netlify Deployment
+
+```toml
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+### Vercel Deployment
+
+```json
+{
+  "name": "calories-calculator",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
+```
+
+### Performance Optimization
+
+```typescript
+// Code splitting
+const WorkoutPlan = lazy(() => import('./components/WorkoutPlan'));
+const MealPlans = lazy(() => import('./components/MealPlans'));
+
+// Image optimization
+const optimizedImages = {
+  hero: '/images/hero-optimized.webp',
+  fallback: '/images/hero.jpg'
+};
+```
+
+### SEO Configuration
+
+```html
+<!-- Meta tags for SEO -->
+<meta name="description" content="Free bilingual calories calculator and workout planner. Calculate BMR, TDEE, and macros with personalized workout plans.">
+<meta name="keywords" content="calories calculator, macro calculator, workout planner, BMR, TDEE, fitness">
+<meta property="og:title" content="Calories Calculator & Workout Planner">
+<meta property="og:description" content="Calculate your daily calories and get personalized workout plans">
+<meta property="og:image" content="/og-image.png">
+```
+
+---
+
+## Support & Contributing
+
+For technical questions or contributions, please refer to:
+- [GitHub Issues](https://github.com/yourusername/calories-calculator/issues)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+
+Built with 💚 by the Calories Calculator team.
