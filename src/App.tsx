@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { MacroChart } from './components/MacroChart';
 import { MealPlans } from './components/MealPlans';
 import { ResultsDisplay } from './components/ResultsDisplay';
+import { SplashScreen } from './components/SplashScreen';
 import { WorkoutPlan } from './components/WorkoutPlan';
 import { translations } from './data/translations';
 import { useLanguage } from './hooks/useLanguage';
@@ -16,7 +17,12 @@ function App() {
   const { language, switchLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [results, setResults] = useState<MacroResults | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
   const t = translations[language];
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
 
   const handleCalculate = (userData: UserData) => {
     const calculatedResults = calculateMacros(userData);
@@ -40,6 +46,10 @@ function App() {
   const handlePrint = () => {
     printResults();
   };
+
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
