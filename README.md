@@ -13,6 +13,9 @@ A modern, web application for calculating daily calorie needs, macro breakdowns,
 
 Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
 
+<img width="1800" height="760" alt="all-devices-black" src="https://github.com/user-attachments/assets/66d8ef9c-c519-4726-adf8-5a7d08519c98" />
+
+
 ## ✨ Features
 
 ### 🧮 Calorie & Macro Calculator
