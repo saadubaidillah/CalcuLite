@@ -151,6 +151,7 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 <div className="font-medium text-sm">{t[goalType]}</div>
               </button>
             ))}
+          </div>
         </div>
 
         {/* Submit Button */}
@@ -164,5 +165,3 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
     </div>
   );
 };
-  )
-}
