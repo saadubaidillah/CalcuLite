@@ -2,16 +2,16 @@
 
 A modern, web application for calculating daily calorie needs, macro breakdowns, and personalized workout plans. Built with React, TypeScript, and Tailwind CSS.
 
-## 🔗 Live Demo
-
-Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
-
 ![Calories Calculator](https://img.shields.io/badge/React-18.x-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?logo=tailwind-css)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Deploy Status](https://github.com/FatoomRe/Smart-Calories-Calculator/actions/workflows/deploy.yml/badge.svg)
 ![Security](https://img.shields.io/badge/Security-No%20Secrets-brightgreen)
+
+## 🔗 Live Demo
+
+Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
 
 ## ✨ Features
 
