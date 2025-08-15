@@ -545,4 +545,4 @@ This project is completely safe for open source distribution:
 - No proprietary or closed-source libraries
 - Regular security updates via npm audit
 
-Built with 💚 by the Calories Calculator team.
+Built with 💚 by the Creator Fatoomre.
