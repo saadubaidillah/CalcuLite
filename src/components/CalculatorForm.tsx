@@ -136,19 +136,19 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             {t.goal}
           </label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {(['build', 'lose'] as const).map((goalType) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {(['build', 'lose', 'cut', 'maintain', 'recomp'] as const).map((goalType) => (
               <button
                 key={goalType}
                 type="button"
                 onClick={() => handleChange('goal', goalType)}
-                className={`p-4 rounded-lg border-2 transition-all text-center ${
+                className={`p-3 rounded-lg border-2 transition-all text-center ${
                   formData.goal === goalType
                     ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300'
                     : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300'
                 }`}
               >
-                <div className="font-medium">{t[goalType]}</div>
+                <div className="font-medium text-sm">{t[goalType]}</div>
               </button>
             ))}
           </div>

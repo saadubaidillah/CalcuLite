@@ -25,11 +25,20 @@ export const calculateMacros = (userData: UserData): MacroResults => {
   // Step 3: Calculate Goal TDEE
   // Build Muscle: Goal TDEE = TDEE + 500
   // Lose Fat + Build Muscle: Goal TDEE = TDEE - 500
+  // Cut (Lose Fat): Goal TDEE = TDEE - 750
+  // Maintain Weight: Goal TDEE = TDEE
+  // Body Recomposition: Goal TDEE = TDEE - 200
   let goalTdee: number;
   if (goal === 'build') {
     goalTdee = tdee + 500; // +500 kcal for muscle gain
-  } else {
+  } else if (goal === 'lose') {
     goalTdee = tdee - 500; // -500 kcal for fat loss + muscle gain
+  } else if (goal === 'cut') {
+    goalTdee = tdee - 750; // -750 kcal for aggressive fat loss
+  } else if (goal === 'maintain') {
+    goalTdee = tdee; // Maintenance calories
+  } else { // recomp
+    goalTdee = tdee - 200; // -200 kcal for slow body recomposition
   }
 
   // Step 4: Calculate Protein Needs
@@ -39,8 +48,19 @@ export const calculateMacros = (userData: UserData): MacroResults => {
   const proteinCalories = proteinGrams * 4;
 
   // Step 5: Calculate Fat Needs
-  // Fat calories = Goal TDEE × 35%
-  const fatCalories = goalTdee * 0.35;
+  // Fat needs vary by goal
+  let fatPercentage: number;
+  if (goal === 'build') {
+    fatPercentage = 0.30; // 30% for muscle building
+  } else if (goal === 'cut') {
+    fatPercentage = 0.25; // 25% for aggressive fat loss
+  } else if (goal === 'maintain') {
+    fatPercentage = 0.30; // 30% for maintenance
+  } else { // lose or recomp
+    fatPercentage = 0.35; // 35% for fat loss + muscle gain
+  }
+  
+  const fatCalories = goalTdee * fatPercentage;
   // Fat (g) = Fat calories ÷ 9
   const fatGrams = fatCalories / 9;
 

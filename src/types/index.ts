@@ -4,7 +4,7 @@ export interface UserData {
   height: number;
   weight: number;
   activityLevel: 'sedentary' | 'moderate' | 'active';
-  goal: 'build' | 'lose';
+  goal: 'build' | 'lose' | 'cut' | 'maintain' | 'recomp';
 }
 
 export interface MacroResults {
