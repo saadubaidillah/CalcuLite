@@ -44,8 +44,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3">
+      {/* Action Buttons (hidden in print/PDF) */}
+      <div className="flex flex-col sm:flex-row gap-3 no-print no-pdf" data-html2canvas-ignore>
         <button
           onClick={onDownloadPDF}
           className="flex-1 flex items-center justify-center space-x-2 rtl:space-x-reverse bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-6 rounded-lg font-medium hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transform hover:scale-[1.02] transition-all duration-200 shadow-lg"
@@ -63,11 +63,11 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-200"
+    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-200 break-inside-avoid"
           >
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className={`p-3 rounded-lg ${stat.bg}`}>
@@ -96,7 +96,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg break-inside-avoid">
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
               {results.protein.grams}g
             </div>
@@ -108,7 +108,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             </div>
           </div>
 
-          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg break-inside-avoid">
             <div className="text-3xl font-bold text-green-600 dark:text-green-400">
               {results.carbs.grams}g
             </div>
@@ -120,7 +120,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
             </div>
           </div>
 
-          <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+          <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg break-inside-avoid">
             <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">
               {results.fat.grams}g
             </div>

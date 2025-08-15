@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Print styles: focus on results, preserve colors, avoid page cut issues */
+@media print {
+	/* Preserve background colors for Tailwind utilities */
+	* {
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+	}
+
+	/* Hide non-essential sections */
+	header, footer, nav, .no-print, .print\:hidden {
+		display: none !important;
+	}
+
+	/* Only show the results section */
+	body * {
+		visibility: hidden;
+	}
+	#results-section, #results-section * {
+		visibility: visible;
+	}
+	#results-section {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+	}
+
+	/* Avoid breaking cards/elements across pages */
+	.break-inside-avoid {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+}

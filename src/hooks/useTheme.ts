@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Theme } from '../types';
 
 export const useTheme = () => {
@@ -6,12 +6,9 @@ export const useTheme = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
+    // Light is the default; only apply saved preference if present
     if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
       setTheme(savedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark ? 'dark' : 'light');
     }
   }, []);
 

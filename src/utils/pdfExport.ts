@@ -1,102 +1,102 @@
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { MacroResults, Language } from '../types';
-import { translations } from '../data/translations';
+import jsPDF from 'jspdf';
+import { Language, MacroResults } from '../types';
 
-export const generatePDF = async (results: MacroResults, language: Language) => {
-  const t = translations[language];
-  
-  // Create a new PDF document
-  const pdf = new jsPDF();
-  
-  // Set font for Arabic if needed
-  if (language === 'ar') {
-    pdf.setFont('Helvetica');
+// Generate a high-quality, multi-page PDF from the on-screen results section
+export const generatePDF = async (_results: MacroResults, language: Language) => {
+
+  // Grab the full results section so layout, RTL, and styles are preserved
+  const resultsEl = document.getElementById('results-section');
+  if (!resultsEl) return;
+
+  // Render the element to canvas at high scale for crisp output
+  // Clone node to strip no-print elements visually if needed
+  const canvas = await html2canvas(resultsEl, {
+    scale: 2, // increase for sharper PDF; 2 is a good balance
+    useCORS: true,
+    backgroundColor: '#ffffff',
+    logging: false,
+    windowWidth: document.documentElement.scrollWidth,
+    ignoreElements: (el) => !!(el as HTMLElement).dataset?.html2canvasIgnore,
+  });
+
+  const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF('p', 'mm', 'a4');
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const margin = 10; // mm
+  const imgWidth = pageWidth - margin * 2;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  let heightLeft = imgHeight;
+  let position = 0; // y-offset in mm
+
+  // Add title header on the first page (optional)
+  // You can remove this if you prefer exact screenshot only
+  // pdf.setFontSize(16);
+  // pdf.text(t.title, 10, 10);
+  // position = 15;
+
+  // Draw the image, adding pages as needed
+  pdf.addImage(imgData, 'PNG', margin, margin, imgWidth, imgHeight, undefined, 'FAST');
+  heightLeft -= (pageHeight - margin * 2);
+  position = margin - (pageHeight - margin * 2); // shift image upward for subsequent pages
+
+  while (heightLeft > 0) {
+  pdf.addPage();
+  pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight, undefined, 'FAST');
+  heightLeft -= (pageHeight - margin * 2);
+  position -= (pageHeight - margin * 2);
   }
-  
-  // Add title
-  pdf.setFontSize(20);
-  pdf.setTextColor(0, 0, 0);
-  pdf.text(t.title, 20, 20);
-  
-  // Add subtitle
-  pdf.setFontSize(12);
-  pdf.setTextColor(100, 100, 100);
-  pdf.text(t.subtitle, 20, 30);
-  
-  // Add results section
-  pdf.setFontSize(16);
-  pdf.setTextColor(0, 0, 0);
-  pdf.text(t.results, 20, 50);
-  
-  // BMR, TDEE, Goal Calories
-  pdf.setFontSize(12);
-  let yPos = 65;
-  
-  pdf.text(`${t.bmr}: ${results.bmr} ${t.calories}`, 20, yPos);
-  yPos += 10;
-  pdf.text(`${t.tdee}: ${results.tdee} ${t.calories}`, 20, yPos);
-  yPos += 10;
-  pdf.text(`${t.goalCalories}: ${results.goalTdee} ${t.calories}`, 20, yPos);
-  yPos += 20;
-  
-  // Macros breakdown
-  pdf.setFontSize(14);
-  pdf.text(t.macroBreakdown, 20, yPos);
-  yPos += 15;
-  
-  pdf.setFontSize(12);
-  pdf.text(`${t.protein}: ${results.protein.grams}g (${results.protein.calories} ${t.calories}, ${results.protein.percentage}%)`, 20, yPos);
-  yPos += 10;
-  pdf.text(`${t.carbs}: ${results.carbs.grams}g (${results.carbs.calories} ${t.calories}, ${results.carbs.percentage}%)`, 20, yPos);
-  yPos += 10;
-  pdf.text(`${t.fat}: ${results.fat.grams}g (${results.fat.calories} ${t.calories}, ${results.fat.percentage}%)`, 20, yPos);
-  
-  // Add footer
-  pdf.setFontSize(10);
-  pdf.setTextColor(150, 150, 150);
-  pdf.text(t.poweredBy, 20, 280);
-  
-  // Save the PDF
-  const filename = language === 'ar' ? 'خطة-اللياقة.pdf' : 'fitness-plan.pdf';
+
+  const filename = language === 'ar' ? 'خطة-السعرات.pdf' : 'calories-plan.pdf';
   pdf.save(filename);
 };
 
-export const printResults = () => {
-  // Create a print-friendly version of the results
-  const printWindow = window.open('', '_blank');
-  if (!printWindow) return;
-  
-  const resultsElement = document.getElementById('results-section');
-  if (!resultsElement) return;
-  
-  html2canvas(resultsElement, {
+// Open the generated PDF in a new tab for preview instead of saving
+export const previewPDF = async (_results: MacroResults) => {
+  const resultsEl = document.getElementById('results-section');
+  if (!resultsEl) return;
+
+  const canvas = await html2canvas(resultsEl, {
     scale: 2,
     useCORS: true,
-    allowTaint: true,
-  }).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Fitness Plan</title>
-          <style>
-            body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
-            img { max-width: 100%; height: auto; }
-            @media print {
-              body { margin: 0; }
-              img { width: 100%; }
-            }
-          </style>
-        </head>
-        <body>
-          <img src="${imgData}" alt="Fitness Plan Results" />
-        </body>
-      </html>
-    `);
-    
-    printWindow.document.close();
-    printWindow.print();
+    backgroundColor: '#ffffff',
+    logging: false,
+    windowWidth: document.documentElement.scrollWidth,
   });
+
+  const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF('p', 'mm', 'a4');
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const imgWidth = pageWidth;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  let heightLeft = imgHeight;
+  let position = 0;
+
+  pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
+  heightLeft -= pageHeight;
+  position -= pageHeight;
+
+  while (heightLeft > 0) {
+    pdf.addPage();
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
+    heightLeft -= pageHeight;
+    position -= pageHeight;
+  }
+
+  // Open in a new tab/window for preview
+  const blobUrl = pdf.output('bloburl');
+  window.open(blobUrl, '_blank');
+};
+
+// Print using CSS print styles: hides non-results and preserves colors
+export const printResults = () => {
+  window.print();
 };

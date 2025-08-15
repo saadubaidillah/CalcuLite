@@ -1,5 +1,7 @@
 # 📚 Calories Calculator - Technical Documentation
 
+Live Demo: https://fatoomre.github.io/Smart-Calories-Calculator/
+
 ## Table of Contents
 1. [Architecture Overview](#architecture-overview)
 2. [Component Documentation](#component-documentation)

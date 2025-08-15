@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=./index.html" />
+  </head>
+  <body>
+    <script>
+      // SPA redirect for GitHub Pages deep links
+      const redirect = sessionStorage.getItem('redirect');
+      if (redirect) {
+        sessionStorage.removeItem('redirect');
+        window.location.replace(redirect);
+      }
+    </script>
+  </body>
+</html>
