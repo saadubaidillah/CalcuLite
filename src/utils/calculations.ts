@@ -37,8 +37,6 @@ export const calculateMacros = (userData: UserData): MacroResults => {
     goalTdee = tdee - 750; // -750 kcal for aggressive fat loss
   } else if (goal === 'maintain') {
     goalTdee = tdee; // Maintenance calories
-  } else { // recomp
-    goalTdee = tdee - 200; // -200 kcal for slow body recomposition
   }
 
   // Step 4: Calculate Protein Needs
@@ -56,7 +54,7 @@ export const calculateMacros = (userData: UserData): MacroResults => {
     fatPercentage = 0.25; // 25% for aggressive fat loss
   } else if (goal === 'maintain') {
     fatPercentage = 0.30; // 30% for maintenance
-  } else { // lose or recomp
+  } else { // lose
     fatPercentage = 0.35; // 35% for fat loss + muscle gain
   }
   

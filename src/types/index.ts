@@ -5,7 +5,6 @@ export interface UserData {
   weight: number;
   activityLevel: 'sedentary' | 'moderate' | 'active';
   goal: 'build' | 'lose' | 'cut' | 'maintain' | 'recomp';
-}
 
 export interface MacroResults {
   bmr: number;

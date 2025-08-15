@@ -21,7 +21,6 @@ export const translations = {
     lose: "Lose Fat & Build Muscle",
     cut: "Cut (Lose Fat)",
     maintain: "Maintain Weight",
-    recomp: "Body Recomposition",
     calculate: "Calculate My Plan",
     
     // Results
@@ -91,7 +90,6 @@ export const translations = {
     lose: "حرق الدهون وبناء العضلات",
     cut: "التنشيف (حرق الدهون)",
     maintain: "الحفاظ على الوزن",
-    recomp: "إعادة تشكيل الجسم",
     calculate: "احسب خطتي",
     
     // Results
