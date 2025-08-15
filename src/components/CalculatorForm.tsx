@@ -136,6 +136,7 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             {t.goal}
           </label>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {(['build', 'lose', 'cut', 'maintain'] as const).map((goalType) => (
               <button
                 key={goalType}
@@ -150,7 +151,6 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 <div className="font-medium text-sm">{t[goalType]}</div>
               </button>
             ))}
-          </div>
         </div>
 
         {/* Submit Button */}
