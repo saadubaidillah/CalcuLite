@@ -10,6 +10,8 @@ Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?logo=tailwind-css)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Deploy Status](https://github.com/FatoomRe/Smart-Calories-Calculator/actions/workflows/deploy.yml/badge.svg)
+![Security](https://img.shields.io/badge/Security-No%20Secrets-brightgreen)
 
 ## ✨ Features
 
@@ -183,36 +185,47 @@ switchLanguage('ar');
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information.
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m "Add amazing feature"
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
+**Quick Start:**
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m "Add amazing feature"`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ### Development Guidelines
 
 - Follow TypeScript best practices
-- Use semantic commit messages
+- Use semantic commit messages  
 - Add tests for new features
 - Ensure responsive design
 - Support both languages (EN/AR)
+
+## 📄 Documentation
+
+- **[📖 User Documentation](DOCUMENTATION.md)** - Detailed usage guide
+- **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## � Security
+
+This project is **100% safe for open source** because:
+- ✅ **Frontend-only application** - No server-side secrets
+- ✅ **No API keys** or authentication tokens
+- ✅ **No sensitive data** stored or transmitted
+- ✅ **Client-side calculations only** - All processing happens in your browser
+- ✅ **No external API calls** - Everything works offline
+
+### Privacy
+- **No data collection** - Your personal information never leaves your device
+- **No tracking** - No analytics or user behavior monitoring
+- **No cookies** - No persistent data storage beyond your current session
+
+## �🙏 Acknowledgments
 
 - Built with 💚 by [Fatoomre](https://github.com/fatoomre)
 - Inspired by modern fitness and nutrition science

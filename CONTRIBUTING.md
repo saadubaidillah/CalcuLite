@@ -3,23 +3,12 @@
 First off, thank you for considering contributing to Calories Calculator! It's people like you that make this project a great tool for the fitness community.
 
 ## 📋 Table of Contents
-- [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [How to Contribute](#how-to-contribute)
 - [Development Guidelines](#development-guidelines)
 - [Pull Request Process](#pull-request-process)
 - [Issue Reporting](#issue-reporting)
 - [Feature Requests](#feature-requests)
-
-## Code of Conduct
-
-This project and everyone participating in it is governed by our Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to [project maintainer email].
-
-### Our Pledge
-- Be respectful and inclusive
-- Be collaborative
-- Be constructive in discussions
-- Focus on what's best for the community
 
 ## Getting Started
 
@@ -38,13 +27,13 @@ This project and everyone participating in it is governed by our Code of Conduct
 
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/yourusername/calories-calculator.git
-   cd calories-calculator
+   git clone https://github.com/yourusername/Smart-Calories-Calculator.git
+   cd Smart-Calories-Calculator
    ```
 
 3. **Add upstream remote**
    ```bash
-   git remote add upstream https://github.com/original/calories-calculator.git
+   git remote add upstream https://github.com/FatoomRe/Smart-Calories-Calculator.git
    ```
 
 4. **Install dependencies**

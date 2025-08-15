@@ -520,8 +520,29 @@ const optimizedImages = {
 ## Support & Contributing
 
 For technical questions or contributions, please refer to:
-- [GitHub Issues](https://github.com/yourusername/calories-calculator/issues)
+- [GitHub Issues](https://github.com/FatoomRe/Smart-Calories-Calculator/issues)
 - [Contributing Guidelines](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
+
+## 🔒 Security & Open Source Safety
+
+This project is completely safe for open source distribution:
+
+### No Sensitive Code
+- ✅ **Frontend-only React application**
+- ✅ **No server-side code or APIs**
+- ✅ **No authentication tokens or API keys**
+- ✅ **No database connections or credentials**
+- ✅ **No payment processing or sensitive data**
+
+### Privacy-First Design
+- **Local calculations only** - All BMR/TDEE/macro calculations happen in the browser
+- **No data transmission** - No user data is sent to external servers
+- **No tracking** - No analytics, cookies, or user behavior monitoring
+- **Offline capable** - Works without internet connection after initial load
+
+### Safe Dependencies
+- All dependencies are public, well-maintained packages
+- No proprietary or closed-source libraries
+- Regular security updates via npm audit
 
 Built with 💚 by the Calories Calculator team.
