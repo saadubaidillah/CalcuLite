@@ -25,17 +25,31 @@ export interface Exercise {
 
 export interface WorkoutDay {
   name: string;
+  focus: string;
+  duration: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   exercises: Exercise[];
+}
+
+export interface WorkoutPlan {
+  name: string;
+  description: string;
+  days: WorkoutDay[];
+  restDays: number;
 }
 
 export interface MealPlan {
   name: string;
+  category: 'breakfast' | 'lunch' | 'dinner' | 'snack';
+  prepTime: number;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
   protein: number;
   carbs: number;
   fat: number;
   calories: number;
   ingredients: string[];
   instructions: string[];
+  tips?: string[];
 }
 
 export type Language = 'en' | 'ar';
