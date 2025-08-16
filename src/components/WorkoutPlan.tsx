@@ -119,7 +119,7 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
 
         {/* Day Selection */}
         <div className="flex flex-wrap gap-2">
-          {currentPlan.days.map((day, index) => (
+          {currentPlan.days.map((_day, index) => (
             <button
               key={index}
               onClick={() => setSelectedDay(index)}

@@ -65,7 +65,7 @@ export const mealPlans: Record<string, MealPlan[]> = {
         "Finish with granola for crunch"
       ],
       tips: [
-        "Prepare overnight oats version for busy mornings",
+        "Prepare overnight oats for busy mornings",
         "Substitute berries with seasonal fruits",
         "Add protein powder for extra 20g protein"
       ]

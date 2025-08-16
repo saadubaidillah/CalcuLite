@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChefHat, Clock, Users, Star, Filter } from 'lucide-react';
+import { ChefHat, Clock, Star, Filter } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { mealPlans } from '../data/mealPlans';
