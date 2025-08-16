@@ -54,7 +54,7 @@ export const MacroChart: React.FC<MacroChartProps> = ({ results, language }) => 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 h-full flex flex-col">
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
         {t.macroBreakdown}
       </h3>

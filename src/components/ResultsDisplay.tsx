@@ -43,7 +43,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 h-full flex flex-col">
       {/* Action Buttons (hidden in print/PDF) */}
       <div className="flex flex-col sm:flex-row gap-3 no-print no-pdf" data-html2canvas-ignore>
         <button
@@ -90,12 +90,12 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       </div>
 
       {/* Daily Macros Card */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 flex-1 flex flex-col">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
           {t.dailyCalories}: {results.goalTdee.toLocaleString()}
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 items-center">
           <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg break-inside-avoid">
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
               {results.protein.grams}g

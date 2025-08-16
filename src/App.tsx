@@ -88,8 +88,8 @@ function App() {
               </div>
 
               {/* Results Display and Chart */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <div className="h-full flex flex-col">
                   <ResultsDisplay
                     results={results}
                     language={language}
@@ -97,7 +97,7 @@ function App() {
                     onPrint={handlePrint}
                   />
                 </div>
-                <div>
+                <div className="h-full flex flex-col">
                   <MacroChart results={results} language={language} />
                 </div>
               </div>
