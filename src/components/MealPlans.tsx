@@ -62,7 +62,7 @@ export const MealPlans: React.FC<MealPlansProps> = ({ language }) => {
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {language === 'en' ? 'Professional Meal Plans' : 'خطط الوجبات المهنية'}
+            {language === 'en' ? 'Meal Plans' : 'خطط الوجبات'}
           </h3>
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             {language === 'en' ? 'Macro-optimized recipes for your fitness goals' : 'وصفات محسنة للمغذيات الكبيرة لأهدافك الرياضية'}

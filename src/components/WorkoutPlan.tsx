@@ -40,7 +40,7 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {language === 'en' ? 'Professional Workout Plans' : 'خطط التمارين المهنية'}
+            {language === 'en' ? 'Workout Plans' : 'خطط التمارين'}
           </h3>
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             {language === 'en' ? 'Choose your training split and customize your workout' : 'اختر تقسيم التدريب وخصص تمرينك'}
