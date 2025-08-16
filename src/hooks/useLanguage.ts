@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Language } from '../types';
 
 export const useLanguage = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('ar');
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language;
