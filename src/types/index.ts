@@ -7,6 +7,15 @@ export interface UserData {
   goal: 'build' | 'lose' | 'cut' | 'maintain' | 'recomp';
 }
 
+export interface FormData {
+  age: string;
+  gender: 'male' | 'female';
+  height: string;
+  weight: string;
+  activityLevel: 'sedentary' | 'moderate' | 'active';
+  goal: 'build' | 'lose' | 'cut' | 'maintain' | 'recomp';
+}
+
 export interface MacroResults {
   bmr: number;
   tdee: number;

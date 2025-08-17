@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator } from 'lucide-react';
-import { UserData, Language } from '../types';
+import { UserData, FormData, Language } from '../types';
 import { translations } from '../data/translations';
 
 interface CalculatorFormProps {
@@ -13,22 +13,58 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
   onCalculate,
 }) => {
   const t = translations[language];
-  const [formData, setFormData] = useState<UserData>({
-    age: 25,
+  const [formData, setFormData] = useState<FormData>({
+    age: '',
     gender: 'male',
-    height: 175,
-    weight: 70,
+    height: '',
+    weight: '',
     activityLevel: 'moderate',
     goal: 'build',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onCalculate(formData);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+
+  const validateForm = (): boolean => {
+    const newErrors: Partial<Record<keyof FormData, string>> = {};
+    
+    if (!formData.age || parseInt(formData.age) < 15 || parseInt(formData.age) > 100) {
+      newErrors.age = language === 'en' ? 'Age must be between 15 and 100' : 'العمر يجب أن يكون بين 15 و 100';
+    }
+    
+    if (!formData.height || parseInt(formData.height) < 120 || parseInt(formData.height) > 250) {
+      newErrors.height = language === 'en' ? 'Height must be between 120 and 250 cm' : 'الطول يجب أن يكون بين 120 و 250 سم';
+    }
+    
+    if (!formData.weight || parseInt(formData.weight) < 30 || parseInt(formData.weight) > 300) {
+      newErrors.weight = language === 'en' ? 'Weight must be between 30 and 300 kg' : 'الوزن يجب أن يكون بين 30 و 300 كجم';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (field: keyof UserData, value: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      const userData: UserData = {
+        age: parseInt(formData.age),
+        gender: formData.gender,
+        height: parseInt(formData.height),
+        weight: parseInt(formData.weight),
+        activityLevel: formData.activityLevel,
+        goal: formData.goal,
+      };
+      onCalculate(userData);
+    }
+  };
+
+  const handleChange = (field: keyof FormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
   };
 
   return (
@@ -52,12 +88,20 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
             <input
               type="number"
               min="15"
-              max="80"
+              max="100"
               value={formData.age}
-              onChange={(e) => handleChange('age', parseInt(e.target.value))}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all"
+              placeholder={language === 'en' ? 'Enter your age (15-100)' : 'أدخل عمرك (15-100)'}
+              onChange={(e) => handleChange('age', e.target.value)}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.age 
+                  ? 'border-red-300 dark:border-red-600' 
+                  : 'border-gray-300 dark:border-gray-600'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all`}
               required
             />
+            {errors.age && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.age}</p>
+            )}
           </div>
 
           {/* Gender */}
@@ -82,13 +126,21 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
             </label>
             <input
               type="number"
-              min="140"
-              max="220"
+              min="120"
+              max="250"
               value={formData.height}
-              onChange={(e) => handleChange('height', parseInt(e.target.value))}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all"
+              placeholder={language === 'en' ? 'Enter your height in cm (120-250)' : 'أدخل طولك بالسم (120-250)'}
+              onChange={(e) => handleChange('height', e.target.value)}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.height 
+                  ? 'border-red-300 dark:border-red-600' 
+                  : 'border-gray-300 dark:border-gray-600'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all`}
               required
             />
+            {errors.height && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.height}</p>
+            )}
           </div>
 
           {/* Weight */}
@@ -98,13 +150,21 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
             </label>
             <input
               type="number"
-              min="40"
-              max="200"
+              min="30"
+              max="300"
               value={formData.weight}
-              onChange={(e) => handleChange('weight', parseInt(e.target.value))}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all"
+              placeholder={language === 'en' ? 'Enter your weight in kg (30-300)' : 'أدخل وزنك بالكيلو (30-300)'}
+              onChange={(e) => handleChange('weight', e.target.value)}
+              className={`w-full px-4 py-3 rounded-lg border ${
+                errors.weight 
+                  ? 'border-red-300 dark:border-red-600' 
+                  : 'border-gray-300 dark:border-gray-600'
+              } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all`}
               required
             />
+            {errors.weight && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.weight}</p>
+            )}
           </div>
         </div>
 
@@ -112,6 +172,9 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             {t.activityLevel}
+            <span className="block text-xs text-gray-500 dark:text-gray-400 mt-1">
+              {language === 'en' ? 'Choose your daily activity level' : 'اختر مستوى نشاطك اليومي'}
+            </span>
           </label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {(['sedentary', 'moderate', 'active'] as const).map((level) => (
@@ -126,6 +189,11 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
                 }`}
               >
                 <div className="font-medium">{t[level]}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  {level === 'sedentary' && (language === 'en' ? 'Little to no exercise' : 'قليل أو لا يوجد تمرين')}
+                  {level === 'moderate' && (language === 'en' ? '3-5 days per week' : '3-5 أيام في الأسبوع')}
+                  {level === 'active' && (language === 'en' ? '6-7 days per week' : '6-7 أيام في الأسبوع')}
+                </div>
               </button>
             ))}
           </div>
@@ -135,6 +203,9 @@ export const CalculatorForm: React.FC<CalculatorFormProps> = ({
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             {t.goal}
+            <span className="block text-xs text-gray-500 dark:text-gray-400 mt-1">
+              {language === 'en' ? 'What is your fitness goal?' : 'ما هو هدفك الرياضي؟'}
+            </span>
           </label>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {(['build', 'lose', 'cut', 'maintain'] as const).map((goalType) => (
