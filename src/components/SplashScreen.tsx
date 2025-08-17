@@ -32,7 +32,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
         {/* App Title */}
         <h1 className="text-3xl font-bold text-gray-800 mb-2 animate-fade-in-up">
-          CalcuLite
+          Calories Calculator
         </h1>
         <p className="text-gray-600 animate-fade-in-up animation-delay-300">
           Your fitness journey starts here
@@ -46,7 +46,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .apple-container {
           position: relative;
           width: 120px;
