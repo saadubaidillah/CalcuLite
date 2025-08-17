@@ -1,17 +1,17 @@
-# 🍏 Calories Calculator & Workout Planner
+# 🍏 CalcuLite
 
 A modern, web application for calculating daily calorie needs, macro breakdowns, and personalized workout plans. Built with React, TypeScript, and Tailwind CSS.
 
-![Calories Calculator](https://img.shields.io/badge/React-18.x-blue?logo=react)
+![CalcuLite](https://img.shields.io/badge/React-18.x-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?logo=tailwind-css)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Deploy Status](https://github.com/FatoomRe/Smart-Calories-Calculator/actions/workflows/deploy.yml/badge.svg)
+![Deploy Status](https://github.com/FatoomRe/CalcuLite/actions/workflows/deploy.yml/badge.svg)
 ![Security](https://img.shields.io/badge/Security-No%20Secrets-brightgreen)
 
 ## 🔗 Live Demo
 
-Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
+Use it here: https://fatoomre.github.io/CalcuLite/
 
 <img width="1800" height="760" alt="all-devices-black" src="https://github.com/user-attachments/assets/66d8ef9c-c519-4726-adf8-5a7d08519c98" />
 
@@ -56,8 +56,8 @@ Use it here: https://fatoomre.github.io/Smart-Calories-Calculator/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/FatoomRe/Smart-Calories-Calculator.git
-   cd Smart-Calories-Calculator
+   git clone https://github.com/FatoomRe/CalcuLite.git
+   cd CalcuLite
    ```
 
 2. **Install dependencies**
@@ -125,7 +125,7 @@ src/
 Create a `.env` file in the root directory:
 
 ```env
-VITE_APP_NAME="Calories Calculator"
+VITE_APP_NAME="CalcuLite"
 VITE_APP_VERSION="1.0.0"
 ```
 

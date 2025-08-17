@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     // Navigation
-    title: "Calories Calculator & Workout Planner",
+    title: "CalcuLite",
     subtitle: "Calculate your calories and get personalized workout plans",
     
     // Calculator Form
@@ -70,7 +70,7 @@ export const translations = {
   },
   ar: {
     // Navigation
-    title: "حاسبة السعرات ومخطط التمارين",
+    title: "CalcuLite",
     subtitle: "احسب سعراتك واحصل على خطط تمارين مخصصة",
     
     // Calculator Form

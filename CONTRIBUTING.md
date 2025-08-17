@@ -1,6 +1,6 @@
-# Contributing to Calories Calculator 🍏
+# Contributing to CalcuLite 🍏
 
-First off, thank you for considering contributing to Calories Calculator! It's people like you that make this project a great tool for the fitness community.
+First off, thank you for considering contributing to CalcuLite! It's people like you that make this project a great tool for the fitness community.
 
 ## 📋 Table of Contents
 - [Getting Started](#getting-started)

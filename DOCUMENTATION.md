@@ -1,6 +1,6 @@
-# 📚 Calories Calculator - Technical Documentation
+# 📚 CalcuLite - Technical Documentation
 
-Live Demo: https://fatoomre.github.io/Smart-Calories-Calculator/
+Live Demo: https://fatoomre.github.io/CalcuLite/
 
 ## Table of Contents
 1. [Architecture Overview](#architecture-overview)
@@ -14,7 +14,7 @@ Live Demo: https://fatoomre.github.io/Smart-Calories-Calculator/
 
 ## Architecture Overview
 
-The Calories Calculator follows a modern React architecture with TypeScript for type safety and Tailwind CSS for styling.
+The CalcuLite follows a modern React architecture with TypeScript for type safety and Tailwind CSS for styling.
 
 ### Core Principles
 - **Component-based**: Modular, reusable React components
@@ -218,11 +218,11 @@ The app uses a centralized translation system in `src/data/translations.ts`:
 ```typescript
 export const translations = {
   en: {
-    title: "Calories Calculator & Workout Planner",
+    title: "CalcuLite",
     // ... English translations
   },
   ar: {
-    title: "حاسبة السعرات ومخطط التمارين",
+    title: "CalcuLite",
     // ... Arabic translations
   }
 };
@@ -417,7 +417,7 @@ test('TDEE calculation for moderate activity', () => {
 
 ```typescript
 // Cypress example
-describe('Calories Calculator', () => {
+describe('CalcuLite', () => {
   it('should complete full calculation flow', () => {
     cy.visit('/');
     
@@ -510,7 +510,7 @@ const optimizedImages = {
 <!-- Meta tags for SEO -->
 <meta name="description" content="Free bilingual calories calculator and workout planner. Calculate BMR, TDEE, and macros with personalized workout plans.">
 <meta name="keywords" content="calories calculator, macro calculator, workout planner, BMR, TDEE, fitness">
-<meta property="og:title" content="Calories Calculator & Workout Planner">
+<meta property="og:title" content="CalcuLite">
 <meta property="og:description" content="Calculate your daily calories and get personalized workout plans">
 <meta property="og:image" content="/og-image.png">
 ```
@@ -520,7 +520,7 @@ const optimizedImages = {
 ## Support & Contributing
 
 For technical questions or contributions, please refer to:
-- [GitHub Issues](https://github.com/FatoomRe/Smart-Calories-Calculator/issues)
+- [GitHub Issues](https://github.com/FatoomRe/CalcuLite/issues)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🔒 Security & Open Source Safety
