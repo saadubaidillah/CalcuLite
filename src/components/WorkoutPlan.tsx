@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Dumbbell, Clock, RotateCcw, Users, Target, Calendar } from 'lucide-react';
+import { Dumbbell, Clock, Target, Calendar, Search } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { workoutPlans } from '../data/workoutPlans';
+import { ExerciseCard } from './ExerciseCard';
+import { ExerciseBrowser } from './ExerciseBrowser';
 
 interface WorkoutPlanProps {
   language: Language;
@@ -12,6 +14,7 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
   const t = translations[language];
   const [selectedPlan, setSelectedPlan] = useState<string>('4day');
   const [selectedDay, setSelectedDay] = useState<number>(0);
+  const [showExerciseBrowser, setShowExerciseBrowser] = useState(false);
   
   const plans = workoutPlans[language];
   const currentPlan = plans[selectedPlan];
@@ -156,39 +159,29 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
               </span>
             </div>
           </div>
+          
+          {/* Browse Exercises Button */}
+          <button
+            onClick={() => setShowExerciseBrowser(true)}
+            className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
+          >
+            <Search className="h-4 w-4" />
+            <span className="text-sm font-medium">
+              {language === 'en' ? 'Browse Exercises' : 'تصفح التمارين'}
+            </span>
+          </button>
         </div>
 
         {/* Exercises */}
         <div className="space-y-4">
           {currentPlan.days[selectedDay].exercises.map((exercise, exerciseIndex) => (
-            <div
+            <ExerciseCard
               key={exerciseIndex}
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                <h5 className="font-semibold text-gray-900 dark:text-white text-lg">
-                  {exerciseIndex + 1}. {exercise.name}
-                </h5>
-                <div className="flex items-center space-x-4 rtl:space-x-reverse text-sm text-gray-600 dark:text-gray-400 mt-2 sm:mt-0">
-                  <span className="flex items-center space-x-1 rtl:space-x-reverse bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full">
-                    <RotateCcw className="h-4 w-4" />
-                    <span>{exercise.sets} {t.sets}</span>
-                  </span>
-                  <span className="flex items-center space-x-1 rtl:space-x-reverse bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 px-3 py-1 rounded-full">
-                    <Users className="h-4 w-4" />
-                    <span>{exercise.reps} {t.reps}</span>
-                  </span>
-                </div>
-              </div>
-              <div className="bg-white dark:bg-gray-600 rounded-lg p-3">
-                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {language === 'en' ? 'Instructions: ' : 'التعليمات: '}
-                  </span>
-                  {exercise.instructions}
-                </p>
-              </div>
-            </div>
+              exercise={exercise}
+              exerciseIndex={exerciseIndex}
+              language={language}
+              t={t}
+            />
           ))}
         </div>
 
@@ -210,6 +203,18 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
           </div>
         </div>
       </div>
+
+      {/* Exercise Browser Modal */}
+      {showExerciseBrowser && (
+        <ExerciseBrowser
+          language={language}
+          onClose={() => setShowExerciseBrowser(false)}
+          onSelectExercise={(exercise) => {
+            console.log('Selected exercise:', exercise);
+            setShowExerciseBrowser(false);
+          }}
+        />
+      )}
     </div>
   );
 };
