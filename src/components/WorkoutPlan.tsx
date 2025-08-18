@@ -1,10 +1,10 @@
+import { Calendar, Clock, Dumbbell, Search, Target } from 'lucide-react';
 import React, { useState } from 'react';
-import { Dumbbell, Clock, Target, Calendar, Search } from 'lucide-react';
-import { Language } from '../types';
 import { translations } from '../data/translations';
 import { workoutPlans } from '../data/workoutPlans';
-import { ExerciseCard } from './ExerciseCard';
+import { Language } from '../types';
 import { ExerciseBrowser } from './ExerciseBrowser';
+import { ExerciseCard } from './ExerciseCard';
 
 interface WorkoutPlanProps {
   language: Language;
