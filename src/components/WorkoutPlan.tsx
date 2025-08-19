@@ -1,9 +1,8 @@
-import { Calendar, Clock, Dumbbell, Search, Target } from 'lucide-react';
+import { Calendar, Clock, Dumbbell, Target } from 'lucide-react';
 import React, { useState } from 'react';
 import { translations } from '../data/translations';
 import { workoutPlans } from '../data/workoutPlans';
 import { Language } from '../types';
-import { ExerciseBrowser } from './ExerciseBrowser';
 import { ExerciseCard } from './ExerciseCard';
 
 interface WorkoutPlanProps {
@@ -14,7 +13,6 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
   const t = translations[language];
   const [selectedPlan, setSelectedPlan] = useState<string>('4day');
   const [selectedDay, setSelectedDay] = useState<number>(0);
-  const [showExerciseBrowser, setShowExerciseBrowser] = useState(false);
   
   const plans = workoutPlans[language];
   const currentPlan = plans[selectedPlan];
@@ -159,17 +157,6 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
               </span>
             </div>
           </div>
-          
-          {/* Browse Exercises Button */}
-          <button
-            onClick={() => setShowExerciseBrowser(true)}
-            className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
-          >
-            <Search className="h-4 w-4" />
-            <span className="text-sm font-medium">
-              {language === 'en' ? 'Browse Exercises' : 'تصفح التمارين'}
-            </span>
-          </button>
         </div>
 
         {/* Exercises */}
@@ -203,18 +190,6 @@ export const WorkoutPlan: React.FC<WorkoutPlanProps> = ({ language }) => {
           </div>
         </div>
       </div>
-
-      {/* Exercise Browser Modal */}
-      {showExerciseBrowser && (
-        <ExerciseBrowser
-          language={language}
-          onClose={() => setShowExerciseBrowser(false)}
-          onSelectExercise={(exercise) => {
-            console.log('Selected exercise:', exercise);
-            setShowExerciseBrowser(false);
-          }}
-        />
-      )}
     </div>
   );
 };

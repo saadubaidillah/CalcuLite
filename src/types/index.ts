@@ -30,23 +30,6 @@ export interface Exercise {
   sets: string;
   reps: string;
   instructions: string;
-  // Optional fields for API integration
-  apiId?: string;
-  gifUrl?: string;
-  bodyPart?: string;
-  equipment?: string;
-  target?: string;
-}
-
-// API Exercise interface for external data
-export interface ExerciseAPI {
-  id: string;
-  name: string;
-  gifUrl: string;
-  bodyPart: string;
-  equipment: string;
-  target: string;
-  instructions: string[];
 }
 
 export interface WorkoutDay {
